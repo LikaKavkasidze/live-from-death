@@ -14,7 +14,7 @@ int main(void) {
 
 	// Fetch all files to be indexed
 	struct GopherMapEntry *gopher_map[256] = {0};
-	result = space_initialize(gopher_map, "./space");
+	result = space_initialize(gopher_map, "/var/gopher");
 
 	if(result != 0) {
 		switch(result) {

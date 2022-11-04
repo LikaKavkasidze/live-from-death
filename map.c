@@ -15,10 +15,10 @@ void map_insert(struct GopherMapEntry **map, char *path, char *content) {
 	while(map[position] != NULL) position++;
 
 	// Fill map entry
-	char *content_local = malloc(strlen(content));
+	char *content_local = malloc(strlen(content) + 1);
 	strcpy(content_local, content);
 
-	char *path_local = malloc(strlen(path));
+	char *path_local = malloc(strlen(path) + 1);
 	strcpy(path_local, path);
 
 	struct GopherMapEntry *map_entry = (struct GopherMapEntry *) malloc(sizeof(struct GopherMapEntry));
