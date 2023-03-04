@@ -1,3 +1,4 @@
+#include <arpa/inet.h>
 #include <dirent.h>
 #include <stdio.h>
 #include <string.h>
@@ -50,7 +51,7 @@ int main(void) {
 	}
 
 	int s_csocket;
-	struct sockaddr_storage s_caddr;
+	struct sockaddr_in s_caddr;
 	char buffer[256];
 	unsigned int buffer_read_len;
 	socklen_t s_csize = sizeof(s_caddr);
