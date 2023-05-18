@@ -5,6 +5,8 @@ After=network.target
 [Service]
 ExecStart=/opt/live-from-death/live-from-death
 Type=simple
+User=gopher
+Group=gopher
 Restart=always
 RestartSec=60
 
