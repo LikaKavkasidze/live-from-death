@@ -42,4 +42,6 @@ int network_create_socket(int *s_socket) {
 	if(s_aip == NULL) {
 		return -1;
 	}
+
+	return 0;
 }

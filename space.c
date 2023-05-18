@@ -10,16 +10,17 @@ int space_initialize(struct GopherMapEntry **gopher_map, char *s_directory_name)
 		return -1;
 	}
 
-	while(file = readdir(s_directory)) {
-		// Not the best way at all to check for hidden files
+	while((file = readdir(s_directory))) {
+		// Quick and dirty way to check for hidden files
 		if(file->d_name[0] != '.') {
 			unsigned int f_name_length = strlen(file->d_name) + strlen(s_directory_name) + 2;
 			char *f_name = malloc(f_name_length * sizeof(char));
-			*f_name = '\0';
 
 			if(f_name == NULL) {
 				return -2;
 			}
+
+			*f_name = '\0';
 
 			strcat(f_name, s_directory_name);
 			strcat(f_name, "/");
@@ -33,9 +34,11 @@ int space_initialize(struct GopherMapEntry **gopher_map, char *s_directory_name)
 				return -2;
 			}
 
-			FILE *f_handle;
+			// Fill memory block to avoid gibberish
+			memset(f_index_content, 0, 10000);
 
-			// Read the full index file
+			// Read the full file
+			FILE *f_handle;
 			f_handle = fopen(f_name, "r");
 
 			if(f_handle == NULL) {
@@ -57,12 +60,12 @@ int space_initialize(struct GopherMapEntry **gopher_map, char *s_directory_name)
 	}
 
 	closedir(s_directory);
+	return 0;
 }
 
 void space_fetch(struct GopherMapEntry **gopher_map, char *address, int address_length, char **f_content) {
 	// Trim request
 	address[address_length - 2] = '\0';
-
 	map_find(gopher_map, address + 1, f_content);
 
 	// Default to index

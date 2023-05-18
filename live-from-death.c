@@ -82,6 +82,8 @@ int main(void) {
 		close(s_csocket);
 	}
 
+	// Deallocate structs (never reached)
+	map_free(gopher_map, 256);
 	close(s_socket);
 
 	return 0;

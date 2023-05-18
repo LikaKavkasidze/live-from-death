@@ -39,7 +39,7 @@ void map_find(struct GopherMapEntry **map, char *path, char **content) {
 		c++;
 	}
 
-	// Find element that match
+	// Find an element that matches
 	unsigned char position = hash;
 	while(map[position] != 0 && strcmp(map[position]->path, path) != 0) position++;
 
